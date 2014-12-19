@@ -1,0 +1,63 @@
+<%= form_for @spark, :html => { :class => "form-horizontal spark" } do |f| %>
+
+    <% if @spark.errors.any? %>
+    <div id="error_expl" class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= pluralize(@spark.errors.count, "error") %> prohibited this spark from being saved:</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+        <% @spark.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="control-group">
+    <%= f.label :classname, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :classname, :class => 'form-control' %>  without filename
+    </div> 
+  </div>
+  
+
+  <div class="control-group">
+    <%= f.label :master, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.select(:master, options_for_select([['spark://192.168.17.240:7077', 'spark://192.168.17.240:7077']], 'spark://192.168.17.240:7077')) %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :memory, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.select(:memory, options_for_select([['5 GB', 5],['10 GB', 10]], 5)) %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :cores, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.select(:cores, options_for_select([['5', 5],['10', 10]], 5)) %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :parameters, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_area :parameters, :class => 'form-control' %> <br>e.g. hdfs://192.168.17.240:9222/home/lab307-spark/yuhc/test/SogouLabDic.dic
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :jarfile, :class => 'control-label' %>
+    <div class="controls">
+        <%= f.file_field :jarfile %>
+    </div>
+  </div>
+
+  
+  <%= f.submit nil, :class => 'btn btn-primary' %>
+  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+            sparks_path, :class => 'btn btn-default' %>
+
+<% end %>

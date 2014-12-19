@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  classname: MyString
+  master: MyString
+  memory: 1
+  cores: 1
+  parameters: MyText
+  cmd: MyText
+  cmdresult: MyText
+
+two:
+  classname: MyString
+  master: MyString
+  memory: 1
+  cores: 1
+  parameters: MyText
+  cmd: MyText
+  cmdresult: MyText

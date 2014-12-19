@@ -1,0 +1,46 @@
+<%- model_class = Spark -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:classname) %>:</strong></dt>
+  <dd><%= @spark.classname %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:master) %>:</strong></dt>
+  <dd><%= @spark.master %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:memory) %>:</strong></dt>
+  <dd><%= @spark.memory %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:cores) %>:</strong></dt>
+  <dd><%= @spark.cores %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:parameters) %>:</strong></dt>
+  <dd><%= @spark.parameters %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:cmd) %>:</strong></dt>
+  <dd><%= @spark.cmd %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:cmdresult) %>:</strong></dt>
+  <dd><%= @spark.cmdresult %></dd>
+</dl>
+
+<%= link_to t('.back', :default => t("helpers.links.back")),
+              sparks_path, :class => 'btn btn-default'  %>
+<%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_spark_path(@spark), :class => 'btn btn-default' %>
+<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              spark_path(@spark),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
+
+<p>
+<p>
+# Example: Run on a Spark standalone cluster<br>
+./bin/spark-submit \<br>
+  --class org.apache.spark.examples.SparkPi \<br>
+  --master spark://192.168.17.240:7077 \<br>
+  --executor-memory 20G \<br>
+  --total-executor-cores 10 \<br>
+  /path/to/examples.jar \<br>
+  1000<br>
+<br>
+</p>
+spark-submit --class week2.WordCount1 --master spark://192.168.17.240:7077 --executor-memory 20G --num-executors 10 Week2.jar hdfs://192.168.17.240:9222/home/lab307-spark/yuhc/test/SogouLabDic.dic
+</p>
